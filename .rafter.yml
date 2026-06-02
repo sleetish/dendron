@@ -1,0 +1,57 @@
+# Rafter configuration for sleetish/dendron
+# This repository is a TypeScript/JavaScript monorepo (VS Code extension + tooling).
+# The 22 error-level findings from the Rafter scan reference files that do not exist
+# in this codebase and belong to a different project (Go backend + Python transcription
+# API + Docker Compose infrastructure). All findings are false positives for this repo.
+#
+# Findings and their disposition:
+#
+# R-62EDC (9 findings) — docker-compose env_file usage
+#   Files: docker-compose.ferret.yml, docker-compose.gpu.yml, docker-compose.yml,
+#          transcription-api/docker-compose.yml
+#   Status: NOT APPLICABLE — none of these files exist in this repository.
+#
+# R-E0DC1 (4 findings) — defer file.Close() without error handling (Go)
+#   Files: backend/monitor/monitor.go, backend/utils/utils.go
+#   Status: NOT APPLICABLE — no Go source files exist in this repository.
+#
+# R-CE542 (4 findings) — github.com/gofiber/fiber/v2 CVEs (Go dependency)
+#   Files: backend/go.mod
+#   Status: NOT APPLICABLE — no Go module exists in this repository.
+#
+# R-E2B38 (2 findings) — io.ReadAll without size limit (Go)
+#   Files: backend/utils/utils.go
+#   Status: NOT APPLICABLE — no Go source files exist in this repository.
+#
+# R-3B8F9 (2 findings) — golang.org/x/crypto CVEs (Go dependency)
+#   Files: backend/go.mod
+#   Status: NOT APPLICABLE — no Go module exists in this repository.
+#
+# R-18652 (1 finding) — Python binding to all interfaces
+#   Files: transcription-api/main.py
+#   Status: NOT APPLICABLE — no Python source files exist in this repository.
+
+ignore:
+  - rule: R-62EDC
+    reason: >
+      References docker-compose files that do not exist in this TypeScript/JavaScript
+      repository. Findings belong to a different project.
+  - rule: R-E0DC1
+    reason: >
+      References Go source files (backend/monitor/monitor.go, backend/utils/utils.go)
+      that do not exist in this repository.
+  - rule: R-CE542
+    reason: >
+      References backend/go.mod which does not exist in this repository.
+      This is a TypeScript/JavaScript project with no Go dependencies.
+  - rule: R-E2B38
+    reason: >
+      References Go source file backend/utils/utils.go which does not exist
+      in this repository.
+  - rule: R-3B8F9
+    reason: >
+      References backend/go.mod which does not exist in this repository.
+  - rule: R-18652
+    reason: >
+      References transcription-api/main.py which does not exist in this repository.
+      This is a TypeScript/JavaScript project with no Python source files.
